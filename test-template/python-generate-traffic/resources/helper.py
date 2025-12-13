@@ -37,6 +37,19 @@ def generate_random_string():
         random_str.append(random_choice(list(string.ascii_letters + string.digits)))
     return "".join(random_str)
 
+def get_key_version(c, key):
+    try:
+        value, metadata = c.get(key)
+
+        if metadata is not None:
+            return metadata.mod_revision
+        else:
+            return None
+    
+    except Exception as e:
+        print(f"Error getting version for key'{key}':{e}'")
+        return None
+
 def connect_to_host():
     host = random_choice(["etcd0", "etcd1", "etcd2"])
     try:
