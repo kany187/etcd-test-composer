@@ -73,13 +73,13 @@ def validate_puts(kvs):
 
 def validate_monotonic_reads(kvs):
     """
-        Test monotonic reads: version numbers should never decrease accross reads.
+        Test monotonic reads: version numbers should never decrease across reads.
 
         For each key that was successfully written, we read it multiple times
         from different etcd nodes and verify that version numbers only go forward
     """
 
-    print('Client: starting monotonuc reads violations')
+    print('Client: starting monotonic reads validation')
 
     if not kvs:
         print('Client: no keys to test, skipping monotonic reads check')
@@ -98,7 +98,7 @@ def validate_monotonic_reads(kvs):
         key = key_value_pair[0]
         highest_version_seen[key] = -1
 
-        print(f"Client: testing key: '{key}'")
+        print(f"Client: testing key '{key}'")
 
         #Read this key 5 times from different clusters
         for attempt in range(5):
@@ -141,9 +141,9 @@ def validate_monotonic_reads(kvs):
 
     success = (problems_found == 0)
     if success:
-        print(f"Client: monotonic reads validation passed - ({total_reads} successful reads)")
+        print(f"Client: monotonic reads validation passed - {total_reads} successful reads")
     else:
-        print(f"Client: monotonic reads validation failed - ({problems_found} violations found)")
+        print(f"Client: monotonic reads validation failed - {problems_found} violations found")
     
     return success, {
         "total_reads": total_reads,
@@ -169,4 +169,4 @@ if __name__ == "__main__":
         monotonic_details
     )
     
-    print("Client: all tests completed!")
+    print("Client: all tests completed")
