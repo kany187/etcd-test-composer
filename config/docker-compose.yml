@@ -52,4 +52,4 @@ services:
     container_name: client
     entrypoint: ['/entrypoint.py']
     environment:
-      - ANTITHESIS_SDK_LOCAL_OUTPUT: /tmp/antithesis_assertions.jsonl
+       ANTITHESIS_SDK_LOCAL_OUTPUT: /tmp/antithesis_assertions.jsonl
